@@ -85,7 +85,17 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+  {
+    title: 'Whatever',
+    date: 'whateverdate',
+    firstParagraph: `whatever1`,
+
+    secondParagraph: `whatever2`,
+
+    thirdParagraph: `whatever3`
+  },
+
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below:
@@ -112,6 +122,17 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
+
+class Obj {
+  constructor(whatever) {
+    this.whatever = whatever;
+    this.button = this.whatever.querySelector('.expandButton');
+    this.button.addEventListener('click', () => this.toggleFunc());
+  }
+  toggleFunc() {
+    this.whatever.classList.toggle('article-open');
+  }
+}
 
 function createComponent(obj) {
 
@@ -140,26 +161,14 @@ function createComponent(obj) {
   div1.appendChild(thirdPara);
 
   document.body.appendChild(div1);
-
-  return div1;
 }
 
-createComponent(data[0]);
-createComponent(data[1]);
-createComponent(data[2]);
-createComponent(data[3]);
-
-function toggleFunc() {
-  div1.classList.toggle('article-open');
+for(let i = 0; i < data.length; i++){
+  createComponent(data[i]);
 }
 
-let button = document.querySelectorAll('.expandButton');
 let div1Toggle = document.querySelectorAll('.article');
 
 div1Toggle.forEach(item => {
-  item.createComponent();
-});
-
-button.forEach(item => {
-  item.addEventListener('click', toggleFunc);
+  new Obj(item);
 });
