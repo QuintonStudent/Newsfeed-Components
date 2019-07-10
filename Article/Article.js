@@ -123,17 +123,11 @@ function createComponent(obj) {
   let secondPara = document.createElement('p');
   let thirdPara = document.createElement('p');
 
-  // function toggleFunc() {
-  //   // div1.className = 'article-open';
-  //   // return div1;
-  //   header1.style.backgroundColor = 'red';
-  // }
-
   div1.className = 'article';
   header1.innerText = obj.title;
   para1.innerText = obj.date;
   span1.className = 'expandButton';
-  // span1.addEventListener('click', toggleFunc);
+  span1.innerText = 'button';
   firstPara.innerText = obj.firstParagraph;
   secondPara.innerText = obj.secondParagraph;
   thirdPara.innerText = obj.thirdParagraph;
@@ -146,9 +140,26 @@ function createComponent(obj) {
   div1.appendChild(thirdPara);
 
   document.body.appendChild(div1);
+
+  return div1;
 }
 
 createComponent(data[0]);
 createComponent(data[1]);
 createComponent(data[2]);
 createComponent(data[3]);
+
+function toggleFunc() {
+  div1.classList.toggle('article-open');
+}
+
+let button = document.querySelectorAll('.expandButton');
+let div1Toggle = document.querySelectorAll('.article');
+
+div1Toggle.forEach(item => {
+  item.createComponent();
+});
+
+button.forEach(item => {
+  item.addEventListener('click', toggleFunc);
+});
